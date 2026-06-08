@@ -57,7 +57,7 @@ jobs:
             echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ljs1022 --password-stdin
             cd ~/simple-php-cicd
             docker compose pull
-            docker rollout app
+            docker compose up -d --force-recreate
             docker image prune -f
 
       - name: Health check
