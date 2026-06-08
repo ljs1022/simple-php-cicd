@@ -54,6 +54,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           command_timeout: 5m
           script: |
+            echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ljs1022 --password-stdin
             cd ~/simple-php-cicd
             docker compose pull
             docker compose up -d --force-recreate
