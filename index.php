@@ -1,2 +1,3 @@
 <?php
-echo "test3";
+echo "Hello from PHP! v3";
+echo " Version: " . PHP_VERSION;
