@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: simple-php-app
+    restart: unless-stopped
+    networks:
+      - simple-php
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: simple-php-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - simple-php
+
+networks:
+  simple-php:
+    driver: bridge
