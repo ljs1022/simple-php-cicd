@@ -6,6 +6,12 @@ services:
       target: production
     container_name: simple-php-app
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "php-fpm", "-t"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
     networks:
       - simple-php
 
